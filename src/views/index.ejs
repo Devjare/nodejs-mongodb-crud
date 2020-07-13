@@ -1,0 +1,55 @@
+<%- include('partials/_header') %>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/add" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="title" value="" 
+                            placeholder="Insert a title" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <textarea type="text" name="description" value="" 
+                            placeholder="Insert a description" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Add
+                            </button> 
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Operation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% tasks.forEach(function(task){ %>
+                        <tr>
+                            <td><%- task._id; %></td>
+                            <td><%- task.title; %></td>
+                            <td><%- task.description; %></td>
+                            <td>
+                                <a href="/complete/<%= task._id%>" 
+                                    class="btn btn-sm <%= task.status ? 'btn-success' : 'btn-dark' %>">
+                                    Done</a>
+                                <a href="/delete/<%= task._id%>" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="/update/<%= task._id%>" class="btn btn-sm btn-info">Edit</a>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<%- include('partials/_footer') %>
