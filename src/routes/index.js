@@ -3,6 +3,7 @@ const { response } = require('express');
 const router = express.Router();
 
 const Task = require('../models/task');
+const task = require('../models/task');
 
 router.get('/', async (request, response) => {    
     const tasks = await Task.find();
@@ -19,11 +20,15 @@ router.post('/add', async (request, response) => {
 
 router.get('/complete/:id', async (req, res) => {
     const { id } = req.params;
-    const task = await Task.findById(id);
+    const task = await getTaskById(id);
     task.status = !task.status;
     await task.save();
     res.redirect('/');
 });
+
+function getTaskById(id) {
+    return Task.findById(id);
+}
 
 router.get('/update/:id', async (req, res) => {
     const { id } = req.params;
