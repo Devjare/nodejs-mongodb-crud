@@ -14,7 +14,7 @@
   "dependencies": {
     "ejs": "^3.1.5",
     "express": "^4.17.1",
-    "jest": "^26.4.2",
+    "jest": "^29.7.0",
     "mongoose": "^5.10.7",
     "morgan": "^1.10.0"
   },
